@@ -6,10 +6,132 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="./styles/output.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <!-- Assuming you have Font Awesome included via CDN -->
+    <style>
+        .container {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px;
+        }
+
+        .drag-container {
+            width: 45%;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #f7fafc;
+            cursor: pointer;
+        }
+
+        .drag-container h2 {
+            margin-bottom: 10px;
+        }
+
+        .drop-container {
+            width: 45%;
+            padding: 20px;
+            border: 2px solid #ccc;
+            background-color: #edf2f7;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+
+        }
+
+        .option i {
+            margin-right: 10px;
+        }
+
+        .draggable-option {
+            margin-bottom: 20px;
+            background-color: rgb(224, 222, 222);
+            padding: 10px;
+        }
+    </style>
 </head>
 
-<body class="bg-green-500">
+<body class="bg-gray-200">
+    <div class="container">
+        <div class="drag-container">
+            <h2>Draggable Options</h2>
+            <div class="draggable-option" draggable="true" data-choice="radio">
+                <i class="fas fa-dot-circle"></i>
+                <span>Multiple Choice (radio)</span>
+            </div>
+            <div class="draggable-option" draggable="true" data-choice="checkbox">
+                <i class="fas fa-check-square"></i>
+                <span>Multiple Choice (checkbox)</span>
+            </div>
+            <div class="draggable-option" draggable="true" data-choice="dropdown">
+                <i class="fas fa-caret-square-down"></i>
+                <span>Dropdown</span>
+            </div>
+            <div class="draggable-option" draggable="true" data-choice="image">
+                <i class="fas fa-image"></i>
+                <span>Image</span>
+            </div>
+            <div class="draggable-option" draggable="true" data-choice="text-field">
+                <i class="fas fa-font"></i>
+                <span>Text Field</span>
+            </div>
+            <div class="draggable-option" draggable="true" data-choice="star-rating">
+                <i class="fas fa-star"></i>
+                <span>Star Rating</span>
+            </div>
+        </div>
+        <div class="drop-container">
+            <h2>Drag and Drop Question Here</h2>
+        </div>
+    </div>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const draggableOptions = document.querySelectorAll(".draggable-option");
+            const dropContainer = document.querySelector(".drop-container");
+
+            draggableOptions.forEach(option => {
+                option.addEventListener("dragstart", function (event) {
+                    event.dataTransfer.setData("text", event.target.innerText);
+                    event.dataTransfer.setData("choice", event.target.getAttribute("data-choice"));
+                });
+            });
+
+            dropContainer.addEventListener("dragover", function (event) {
+                event.preventDefault();
+            });
+
+            dropContainer.addEventListener("drop", function (event) {
+                event.preventDefault();
+                const data = event.dataTransfer.getData("text");
+                const choice = event.dataTransfer.getData("choice");
+                // Handle drop based on the choice
+                console.log("Dropped: " + data + ", Choice: " + choice);
+                // Perform different actions based on the choice
+                if (choice === "radio") {
+                    console.log("Perform action for radio");
+                    // Perform action for radio
+                } else if (choice === "checkbox") {
+                    console.log("Perform action for checkbox");
+                    // Perform action for checkbox
+                } else if (choice === "dropdown") {
+                    console.log("Perform action for dropdown");
+                    // Perform action for dropdown
+                } else if (choice === "image") {
+                    console.log("Perform action for image");
+                    // Perform action for image
+                } else if (choice === "text-field") {
+                    console.log("Perform action for text field");
+                    // Perform action for text field
+                } else if (choice === "star-rating") {
+                    console.log("Perform action for star rating");
+                    // Perform action for star rating
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
