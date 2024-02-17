@@ -3,7 +3,7 @@ const DROP_CONTAINER_SELECTOR = '.drop-container';
 const DRAGGABLE_OPTION_SELECTOR = '.draggable-option';
 
 // Function to create a form with options
-function createForm() {
+function createForm(optionType) {
     // Create form elements
     const form = createFormContainer();
     const questionInput = createQuestionInput();
@@ -20,7 +20,7 @@ function createForm() {
     dropContainer.appendChild(form);
 
     // Show one option initially
-    createOption(optionContainer);
+    createOption(optionContainer, optionType);
 
     // Add delete button to remove the form
     removeFormButton(form);
@@ -60,12 +60,12 @@ function createAddOptionButton(optionContainer) {
 }
 
 // Function to create a new option
-function createOption(optionContainer) {
+function createOption(optionContainer, optionType) {
     const newOption = document.createElement('li');
     newOption.classList.add('flex', 'pb-2', 'mb-3');
     newOption.innerHTML = `
         <p class='m-2'>${optionContainer.children.length + 1}.</p> 
-        <input type='radio'class='m-2'></input>
+        <input type=${optionType} class='m-2'></input>
         <input class='text-xl w-full border-b-2 border-gray-400 focus:border-indigo-600 focus:outline-none' value='Option'></input>
         <button class="text-black rounded-full focus:outline-none delete-option"><i class="fas fa-trash"></i></button>
     `;
@@ -126,8 +126,11 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Dropped choice: " + choice);
         // Create form based on dropped choice
         if (choice === "radio") {
-            createForm();
+            createForm("radio");
             // Handle other choices if needed
+        }
+        if (choice === "checkbox") {
+            createForm("checkbox");
         }
     });
 });
