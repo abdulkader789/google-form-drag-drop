@@ -65,6 +65,7 @@ function createOption(optionContainer) {
     newOption.classList.add('flex', 'pb-2', 'mb-3');
     newOption.innerHTML = `
         <p class='m-2'>${optionContainer.children.length + 1}.</p> 
+        <input type='radio'class='m-2'></input>
         <input class='text-xl w-full border-b-2 border-gray-400 focus:border-indigo-600 focus:outline-none' value='Option'></input>
         <button class="text-black rounded-full focus:outline-none delete-option"><i class="fas fa-trash"></i></button>
     `;
