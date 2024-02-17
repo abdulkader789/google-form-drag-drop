@@ -30,7 +30,7 @@ function createForm() {
         const newOption = document.createElement('div');
         newOption.classList.add('flex', 'pb-2', 'mb-3');
         newOption.innerHTML = `
-            <p class='mr-5'>${optionCount + 1}.</p> 
+            <p class='m-2'>${optionCount + 1}.</p> 
             <input class='text-xl w-full border-b-2 border-gray-400 focus:border-indigo-600 focus:outline-none' value='Option'></input>
         `;
         optionContainer.appendChild(newOption);
