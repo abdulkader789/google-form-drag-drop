@@ -1,6 +1,5 @@
 // Function to create a form with options
 function createForm() {
-    let optionCount = 0;
 
     // Create the form container
     const form = document.createElement('div');
@@ -14,7 +13,7 @@ function createForm() {
     form.appendChild(questionInput);
 
     // Create the options container
-    const optionContainer = document.createElement('div');
+    const optionContainer = document.createElement('ol');
     optionContainer.id = 'option-container';
     form.appendChild(optionContainer);
 
@@ -35,14 +34,33 @@ function createForm() {
 
     // Function to create a new option
     function createOption() {
-        optionCount++;
-        const newOption = document.createElement('div');
+        const newOption = document.createElement('li');
         newOption.classList.add('flex', 'pb-2', 'mb-3');
         newOption.innerHTML = `
-            <p class='m-2'>${optionCount}.</p> 
+            <p class='m-2'>${optionContainer.children.length + 1}.</p> 
             <input class='text-xl w-full border-b-2 border-gray-400 focus:border-indigo-600 focus:outline-none' value='Option'></input>
+            <button class="text-black rounded-full focus:outline-none delete-option"><i class="fas fa-trash"></i></button>
         `;
         optionContainer.appendChild(newOption);
+
+        // Add event listener for delete button
+        const deleteBtn = newOption.querySelector('.delete-option');
+        deleteBtn.addEventListener('click', function () {
+            newOption.remove();
+            // Update the option numbering
+            updateOptionNumbering();
+        });
+
+        // Update the option numbering
+        updateOptionNumbering();
+    }
+
+    // Function to update the option numbering
+    function updateOptionNumbering() {
+        const options = optionContainer.querySelectorAll('li');
+        options.forEach((option, index) => {
+            option.querySelector('p').textContent = `${index + 1}.`;
+        });
     }
 }
 
