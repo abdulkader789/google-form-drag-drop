@@ -7,56 +7,13 @@
     <title>Document</title>
     <link href="./styles/output.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <!-- Assuming you have Font Awesome included via CDN -->
-    <style>
-        .container {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px;
-        }
 
-        .drag-container {
-            width: 45%;
-            padding: 20px;
-            border: 2px solid #ccc;
-            background-color: #f7fafc;
-            cursor: pointer;
-        }
-
-        .drag-container h2 {
-            margin-bottom: 10px;
-        }
-
-        .drop-container {
-            width: 45%;
-            padding: 20px;
-            border: 2px solid #ccc;
-            background-color: #edf2f7;
-        }
-
-        .option {
-            display: flex;
-            align-items: center;
-            margin-bottom: 10px;
-
-        }
-
-        .option i {
-            margin-right: 10px;
-        }
-
-        .draggable-option {
-            margin-bottom: 20px;
-            background-color: rgb(224, 222, 222);
-            padding: 10px;
-        }
-    </style>
 </head>
 
-<body class="bg-gray-200">
-    <div class="container">
-        <div class="drag-container">
-            <h2>Draggable Options</h2>
+<body>
+    <div class="flex w-full bg-gray-200 relative p-10">
+        <div class="drag-container w-1/2 p-20 mr-10  h-[500px]">
+
             <div class="draggable-option" draggable="true" data-choice="radio">
                 <i class="fas fa-dot-circle"></i>
                 <span>Multiple Choice (radio)</span>
@@ -82,56 +39,21 @@
                 <span>Star Rating</span>
             </div>
         </div>
-        <div class="drop-container">
-            <h2>Drag and Drop Question Here</h2>
+
+        <div class="drop-container w-1/2 ">
+            <div
+                class="flex p-5 flex-col bg-white justify-center items-center border-t-2 border-orange-500 border-l-2 border-r-2 border-solid">
+                <input class="w-full mb-5 text-3xl border-none outline-none focus:border-none pb-1  border-gray-400"
+                    type="text" placeholder="Untitled Form">
+                <input class="w-full border-none outline-none focus:border-none pb-1  border-gray-400" type="text"
+                    placeholder="Form Description">
+            </div>
+
+
+
         </div>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const draggableOptions = document.querySelectorAll(".draggable-option");
-            const dropContainer = document.querySelector(".drop-container");
-
-            draggableOptions.forEach(option => {
-                option.addEventListener("dragstart", function (event) {
-                    event.dataTransfer.setData("text", event.target.innerText);
-                    event.dataTransfer.setData("choice", event.target.getAttribute("data-choice"));
-                });
-            });
-
-            dropContainer.addEventListener("dragover", function (event) {
-                event.preventDefault();
-            });
-
-            dropContainer.addEventListener("drop", function (event) {
-                event.preventDefault();
-                const data = event.dataTransfer.getData("text");
-                const choice = event.dataTransfer.getData("choice");
-                // Handle drop based on the choice
-                console.log("Dropped: " + data + ", Choice: " + choice);
-                // Perform different actions based on the choice
-                if (choice === "radio") {
-                    console.log("Perform action for radio");
-                    // Perform action for radio
-                } else if (choice === "checkbox") {
-                    console.log("Perform action for checkbox");
-                    // Perform action for checkbox
-                } else if (choice === "dropdown") {
-                    console.log("Perform action for dropdown");
-                    // Perform action for dropdown
-                } else if (choice === "image") {
-                    console.log("Perform action for image");
-                    // Perform action for image
-                } else if (choice === "text-field") {
-                    console.log("Perform action for text field");
-                    // Perform action for text field
-                } else if (choice === "star-rating") {
-                    console.log("Perform action for star rating");
-                    // Perform action for star rating
-                }
-            });
-        });
-    </script>
+    <script src="./main.js"></script>
 </body>
 
 </html>

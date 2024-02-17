@@ -1,0 +1,28 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+
+
+.drag-container {
+
+    border: 2px solid #ccc;
+    background-color: #f7fafc;
+    cursor: pointer;
+}
+
+.drag-container h2 {
+    margin-bottom: 10px;
+}
+
+
+
+
+
+.draggable-option {
+    margin-bottom: 20px;
+    background-color: rgb(224, 222, 222);
+    padding: 10px;
+}
